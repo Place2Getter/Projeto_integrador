@@ -19,7 +19,7 @@ public class Tema {
 	
 	@NotNull
 	@Size(min = 5 , max = 100)
-	private String tiposervico;
+	private String servico;
 	
 	@NotNull
 	@Size(min = 5 , max = 500)
@@ -27,7 +27,7 @@ public class Tema {
 	
 	@NotNull
 	@Size(min = 5, max = 100)
-	private String palavrachave;
+	private String hashtag;
 
 	public long getId() {
 		return id;
@@ -37,12 +37,12 @@ public class Tema {
 		this.id = id;
 	}
 
-	public String getTipoServico() {
-		return tiposervico;
+	public String getServico() {
+		return servico;
 	}
 
-	public void setTipoServico(String servico) {
-		this.tiposervico = servico;
+	public void setServico(String servico) {
+		this.servico = servico;
 	}
 
 	public String getDescricao() {
@@ -53,11 +53,11 @@ public class Tema {
 		this.descricao = descricao;
 	}
 
-	public String getPalavraChave() {
-		return palavrachave;
+	public String getHashtag() {
+		return hashtag;
 	}
 
-	public void setPalavraChave(String palavraChave) {
-		this.palavrachave = palavraChave;
+	public void setHashtag(String Hashtag) {
+		this.hashtag = Hashtag;
 	}
 }
