@@ -51,12 +51,20 @@ public class Usuario {
 	@Size(min = 5 , max = 500)
 	private String habilidades;
 	
-	/* Relacionamento da Postagem
-	@OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties ("postagem")
+	//Relacionamento da Postagem
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties ("usuario")
 	private List<Postagem> postagem;
-	*/
 	
+	
+	public List<Postagem> getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
+	}
+
 	public long getId() {
 		return id;
 	}
