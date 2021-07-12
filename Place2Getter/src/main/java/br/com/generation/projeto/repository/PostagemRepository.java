@@ -11,8 +11,8 @@ import br.com.generation.projeto.model.Postagem;
 public interface PostagemRepository extends JpaRepository<Postagem, Long>{
 	
 	public Postagem findById(long id);
-	public List<Postagem> findBytituloPostagemContainingIgnoreCase(String tituloPostagem);
-	public List<Postagem> findBydescricaoPostagemContainingIgnoreCase(String descricaoPostagem);
+	public List<Postagem> findByTituloContainingIgnoreCase(String titulo);
+	public List<Postagem> findByDescricaoContainingIgnoreCase(String descricao);
 	public List<Postagem> findByCurtidasLessThan(int curtidas);
 	public Postagem deleteById(long id);
 }

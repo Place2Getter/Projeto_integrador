@@ -35,13 +35,13 @@ public class PostagemController {
 	}
 
 	@GetMapping("/buscartitulo/{titulo}")
-	private List<Postagem> buscarPorTitulo(@PathVariable String tituloPostagem){
-		return repository.findBytituloPostagemContainingIgnoreCase(tituloPostagem);
+	private List<Postagem> buscarPorTitulo(@PathVariable String titulo){
+		return repository.findByTituloContainingIgnoreCase(titulo);
 	}
 	
 	@GetMapping("/buscardescricao/{descricao}")
-	private List<Postagem> buscarDescricao(@PathVariable String descricaoPostagem){
-		return repository.findBydescricaoPostagemContainingIgnoreCase(descricaoPostagem);
+	private List<Postagem> buscarDescricao(@PathVariable String descricao){
+		return repository.findByDescricaoContainingIgnoreCase(descricao);
 	}
 	
 	@GetMapping("/curtidas/{curtidas}")

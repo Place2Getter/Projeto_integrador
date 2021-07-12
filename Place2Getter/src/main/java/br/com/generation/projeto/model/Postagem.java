@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.PositiveOrZero;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
@@ -24,16 +25,17 @@ public class Postagem {
 	private long id;
 	
 	@NotNull
-	private String tituloPostagem;
+	private String titulo;
 	
 	
 	@NotNull
-	private String descricaoPostagem;
+	private String descricao;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataPublicacao = new java.sql.Date(System.currentTimeMillis());
 	
 	@NotNull
+	@PositiveOrZero
 	private int curtidas;
 	
 	@ManyToOne
@@ -52,20 +54,20 @@ public class Postagem {
 		this.id = id;
 	}
 
-	public String getTituloPostagem() {
-		return tituloPostagem;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setTituloPostagem(String tituloPostagem) {
-		this.tituloPostagem = tituloPostagem;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
-	public String getDescricaoPostagem() {
-		return descricaoPostagem;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescricaoPostagem(String descricaoPostagem) {
-		this.descricaoPostagem = descricaoPostagem;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public Date getDataPublicacao() {
