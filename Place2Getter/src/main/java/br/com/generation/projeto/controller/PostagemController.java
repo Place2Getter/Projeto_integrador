@@ -3,6 +3,7 @@ package br.com.generation.projeto.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,12 +35,12 @@ public class PostagemController {
 		return repository.findById(id);
 	}
 
-	@GetMapping("/buscartitulo/{titulo}")
+	@GetMapping("/buscartitulo/{tituloPostagem}")
 	private List<Postagem> buscarPorTitulo(@PathVariable String tituloPostagem){
 		return repository.findBytituloPostagemContainingIgnoreCase(tituloPostagem);
 	}
 	
-	@GetMapping("/buscardescricao/{descricao}")
+	@GetMapping("/buscardescricao/{descricaoPostagem}")
 	private List<Postagem> buscarDescricao(@PathVariable String descricaoPostagem){
 		return repository.findBydescricaoPostagemContainingIgnoreCase(descricaoPostagem);
 	}
@@ -59,7 +60,7 @@ public class PostagemController {
 		return repository.save(postagem);
 	}
 	
-	@DeleteMapping("apagar/{id}")
+	@DeleteMapping("/apagar/{id}")
 	private Postagem apagarPostagem(@PathVariable long id) {
 		return repository.deleteById(id);
 	}
