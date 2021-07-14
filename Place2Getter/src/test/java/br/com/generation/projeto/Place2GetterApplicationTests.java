@@ -9,5 +9,4 @@ class Place2GetterApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
