@@ -18,30 +18,31 @@ import com.sun.istack.NotNull;
 @Entity
 @Table(name = "tb_postagem")
 public class Postagem {
-	
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotNull
 	private String titulo;
-	
-	
+
 	@NotNull
 	private String descricao;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataPublicacao = new java.sql.Date(System.currentTimeMillis());
-	
+
 	@NotNull
 	@PositiveOrZero
 	private int curtidas;
-	
+
+	@NotNull
+	private String liveLink;
+
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
@@ -101,5 +102,13 @@ public class Postagem {
 	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
-	
+
+	public String getLiveLink() {
+		return liveLink;
+	}
+
+	public void setLiveLink(String liveLink) {
+		this.liveLink = liveLink;
+	}
+
 }

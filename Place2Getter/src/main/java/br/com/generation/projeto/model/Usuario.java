@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -28,10 +29,11 @@ public class Usuario {
 	private String nome;
 	
 	@NotNull
+	@Email
 	private String usuario;
 	
 	@NotNull
-	@Size(min = 2 , max = 55)
+	@Size(min = 2)
 	private String senha;
 	
 	private String foto;

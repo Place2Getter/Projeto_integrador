@@ -70,7 +70,7 @@ public class UsuarioService {
 		return repository.save(usuario);
 	}	
 	
-	public Optional<UsuarioLogin> logar(Optional<UsuarioLogin> user) {
+	public Optional<UsuarioLogin> Logar(Optional<UsuarioLogin> user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		Optional<Usuario> usuario = repository.findByUsuario(user.get().getUsuario());
 
@@ -89,9 +89,8 @@ public class UsuarioService {
 				return user;
 			}
 		}
-		return user;
+		return null;
 }
-	
 	public Optional<Usuario> atualizarUsuario(Usuario usuario){
 
         if(repository.findById(usuario.getId()).isPresent()) {
