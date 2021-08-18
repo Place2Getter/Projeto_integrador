@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
@@ -18,30 +19,37 @@ import com.sun.istack.NotNull;
 @Entity
 @Table(name = "tb_postagem")
 public class Postagem {
-	
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotNull
 	private String titulo;
-	
-	
+
 	@NotNull
 	private String descricao;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataPublicacao = new java.sql.Date(System.currentTimeMillis());
-	
-	@NotNull
+
 	@PositiveOrZero
 	private int curtidas;
+
 	
+	@NotNull
+	private String liveLink;
+	
+	@NotNull
+	private String fotoPost;
+
+	@Size(min = 1, max = 100)
+	private String hashtag;
+
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
@@ -101,5 +109,28 @@ public class Postagem {
 	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
-	
+
+	public String getLiveLink() {
+		return liveLink;
+	}
+
+	public void setLiveLink(String liveLink) {
+		this.liveLink = liveLink;
+	}
+
+	public String getFotoPost() {
+		return fotoPost;
+	}
+
+	public void setFotoPost(String fotoPost) {
+		this.fotoPost = fotoPost;
+	}
+
+	public String getHashtag() {
+		return hashtag;
+	}
+
+	public void setHashtag(String hashtag) {
+		this.hashtag = hashtag;
+	}
 }

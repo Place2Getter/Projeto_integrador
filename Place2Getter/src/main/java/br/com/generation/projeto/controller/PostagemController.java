@@ -3,6 +3,8 @@ package br.com.generation.projeto.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.generation.projeto.model.Postagem;
 import br.com.generation.projeto.repository.PostagemRepository;
+import br.com.generation.projeto.service.PostagemService;
 
 @RestController
 @RequestMapping("/postagem")
@@ -23,6 +26,9 @@ public class PostagemController {
 
 	@Autowired
 	private PostagemRepository repository;
+	
+	@Autowired
+	private PostagemService postagemService;
 
 	@GetMapping
 	private List<Postagem> listarTudo() {
@@ -44,11 +50,6 @@ public class PostagemController {
 		return repository.findByDescricaoContainingIgnoreCase(descricao);
 	}
 	
-	@GetMapping("/curtidas/{curtidas}")
-	private List<Postagem> listaCurtidas(@PathVariable int curtidas){
-		return repository.findByCurtidasLessThan(curtidas);
-	}
-	
 	@PostMapping("/novo")
 	private Postagem novoPostagem(@RequestBody Postagem postagem) {
 		return repository.save(postagem);
@@ -57,6 +58,18 @@ public class PostagemController {
 	@PutMapping("/alterar")
 	private Postagem alterarPostagem(@RequestBody Postagem postagem) {
 		return repository.save(postagem);
+	}
+	
+	@PutMapping("/curtir/{id}")
+	private ResponseEntity<Postagem> putCurtirPostageId (@PathVariable Long id){
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(postagemService.curtir(id));
+	}
+	
+	@PutMapping("/descurtir/{id}")
+	private ResponseEntity<Postagem> putDescurtirPostageId (@PathVariable Long id){
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(postagemService.descurtir(id));
 	}
 	
 	@DeleteMapping("apagar/{id}")

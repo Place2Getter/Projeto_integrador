@@ -34,7 +34,7 @@ public class Tema {
 	@Size(min = 5, max = 100)
 	private String hashtag;
 	
-	@OneToMany(mappedBy= "tema", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy= "tema", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("tema")
 	private List<Postagem> postagem;
 	

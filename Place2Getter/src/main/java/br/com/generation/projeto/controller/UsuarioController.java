@@ -2,6 +2,8 @@ package br.com.generation.projeto.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ import br.com.generation.projeto.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin(origins = "", allowedHeaders = "")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
 
 	@Autowired
@@ -44,13 +46,13 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/logar")
-	public ResponseEntity<UsuarioLogin> autenticationUsuario(@RequestBody Optional<UsuarioLogin> usuario) {
-		return UsuarioService.logar(usuario).map(resp -> ResponseEntity.ok(resp))
+	public ResponseEntity<UsuarioLogin>autenticationUsuario(@RequestBody Optional<UsuarioLogin> usuario) {
+		return UsuarioService.Logar(usuario).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 
 	@PostMapping("/cadastrar")
-	private ResponseEntity<Usuario> Cadastrar(@RequestBody Usuario usuario){
+	private ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario){
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(UsuarioService.cadastrarUsuario(usuario));
 	}

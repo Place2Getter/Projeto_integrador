@@ -9,8 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 
 @Entity
@@ -21,23 +24,25 @@ public class Usuario {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
 	
-
-	private String nomeUsuario;
+	@NotNull
+	@Size(min = 2 , max = 55)
+	private String nome;
 	
+	@NotNull
+	@Email
+	private String usuario;
 	
-	private String email;
-	
-
+	@NotNull
+	@Size(min = 2)
 	private String senha;
 	
-	private String imagemUsuario;
+	private String foto;
+	
+	private String tipo;
 	
 	
-	private boolean mentor;
-	
-	
-	private String ocupacaoProfissonal;
-	
+	@Size(min = 2)
+	private String cargo;
 
 	private String habilidade;
 	
@@ -53,20 +58,20 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getNomeUsuario() {
-		return nomeUsuario;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getSenha() {
@@ -77,28 +82,30 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public String getImagemUsuario() {
-		return imagemUsuario;
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setImagemUsuario(String imagemUsuario) {
-		this.imagemUsuario = imagemUsuario;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
-	public boolean getMentor() {
-		return mentor;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setMentor(boolean mentor) {
-		this.mentor = mentor;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
-	public String getOcupacaoProfissonal() {
-		return ocupacaoProfissonal;
+	
+
+	public String getCargo() {
+		return cargo;
 	}
 
-	public void setOcupacaoProfissonal(String ocupacaoProfissonal) {
-		this.ocupacaoProfissonal = ocupacaoProfissonal;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	public String getHabilidade() {
